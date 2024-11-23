@@ -4,6 +4,7 @@
 /* ===== STARTER CSS BELOW FOR body AND p IS JUST AN EXAMPLE... YOU MAY DELETE IT ===== */
 
 @import url("https://use.typekit.net/kbg3gya.css");
+@import url("https://use.typekit.net/kbg3gya.css");
 
 *,
 *::before,
@@ -28,13 +29,36 @@ html {
 body {
     background: var(--background);
     width: auto;
-    padding: 50px;
+    padding: 0;
     margin: 0;
 }
 
-p {
+h1 {
+    font-family: "marigny", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: black;
+    font-size: 4rem;
+}
+
+.selections header {
+    text-align: center;
+    line-height: 1rem;
+    padding: 2rem 2rem 0 2rem;
+}
+
+.selections main {
+    text-align: center;
+    line-height: 1rem;
+    padding: 2rem 2rem 0 2rem;
+}
+
+.selections p {
     font-family: "sayer-script-mn", sans-serif;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--body-text);
+    font-size: 2rem;
+    padding-top: 50px;
 }
+
