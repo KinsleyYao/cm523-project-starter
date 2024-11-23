@@ -3,9 +3,38 @@
 /* ===== NEXT WRITE GLOBAL STYLES, THEN USE MEDIA QUERIES FOR LAYOUT/STYLE ADJUSTMENTS ===== */
 /* ===== STARTER CSS BELOW FOR body AND p IS JUST AN EXAMPLE... YOU MAY DELETE IT ===== */
 
-body {
-    background: magenta;
+@import url("https://use.typekit.net/kbg3gya.css");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+
+html {
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #fbc5bc;
+    --h1: #8384b3;
+    --h2: #a7cfee;
+    --body-text: #2b2b98;
+    --button-bg1: #fee6a7;
+    --button-bg2: #fdc89b;
+    --button-bg3: #cdd6ae;
+}
+
+body {
+    background: var(--background);
+    width: auto;
+    padding: 50px;
+    margin: 0;
+}
+
 p {
-    font-size: 2em;
+    font-family: "sayer-script-mn", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    color: var(--body-text);
 }

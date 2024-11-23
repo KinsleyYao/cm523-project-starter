@@ -20,27 +20,37 @@
  
   <body>
     <!-- YOUR HTML GOES HERE -->
-    <!-- mood selection section -->
-    <div class="selections">
+    <!-- playlist page -->
+    <div class="results">
       <header>
         <h1>Mood Music Generator</h1>
-        <p class="date">Date: <span id="current-date">2024/10/31</span></p>
-        <p class="weather">Weather: <span id="weather">☀️</span></p>
-        <p class="temperature">Temperature: <span id="temperature">80°F</span></p>
       </header>
-      
       <main>
-        <h2>How do you feel today?</h2>
-        <div class="mood-buttons">
-          <input name="moods" id="joyful" type="radio"><label for="joyful">Joyful</label>
-          <input name="moods" id="melancholic" type="radio"><label for="melancholic">Melancholic</label>
-          <input name="moods" id="calm" type="radio"><label for="calm">Calm</label>
-          <input name="moods" id="anxious" type="radio"><label for="anxious">Anxious</label>
-          <input name="moods" id="hopeful" type="radio"><label for="hopeful">Hopeful</label>
-          <input name="moods" id="reflective" type="radio"><label for="reflective">Reflective</label>
+        <h2>Songs For Your Day</h2>
+        <div class="song-list">
+          <div class="song-card">
+            <div class="song-image"></div>
+            <p>Song: <span>Song Title 1</span></p>
+            <p>Singer: <span>Artist 1</span></p>
+            <a href="#">Listen To It</a>
+          </div>
+          <div class="song-card">
+            <div class="song-image"></div>
+            <p>Song: <span>Song Title 2</span></p>
+            <p>Singer: <span>Artist 2</span></p>
+            <a href="#">Listen To It</a>
+          </div>
+          <div class="song-card">
+            <div class="song-image"></div>
+            <p>Song: <span>Song Title 3</span></p>
+            <p>Singer: <span>Artist 3</span></p>
+            <a href="#">Listen To It</a>
+          </div>
         </div>
-        <button class="generate-button">Generate Today's Playlist</button>
+        <div class="share-section">
+          <a href="#">Share my songs of the day!</a>
+          <textarea placeholder="Today, I feel..."></textarea>
+        </div>
       </main>
-    </div>
   </body>
 </html>
