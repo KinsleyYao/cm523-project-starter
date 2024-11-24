@@ -37,8 +37,16 @@ h1 {
     font-family: "marigny", sans-serif;
     font-weight: 700;
     font-style: normal;
-    color: black;
+    color: var(--h1);
     font-size: 4rem;
+}
+
+h2 {
+    font-family: "marigny", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--h2);
+    font-size: 3rem; 
 }
 
 .selections header {
@@ -62,3 +70,6 @@ h1 {
     padding-top: 50px;
 }
 
+.mood-buttons {
+    color: var(--body-text);
+}
