@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Mood Playlist Generator</title>
+    <meta name="description" content="Generate a personalized playlist based on your mood and weather for the day!" />
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <script src="scripts/results.js" defer></script>
+  </head>
+  <body>
+    <div class="results">
+      <header>
+        <h1>Mood Music Generator</h1>
+      </header>
+      <main>
+        <h2>Songs For Your Day</h2>
+        <!-- Container for dynamically loaded videos -->
+        <div class="song-list" id="video-results"></div>
+        <div class="share-section">
+          <h3>Share Your Thoughts</h3>
+          <textarea id="thoughts-input" placeholder="Write your thoughts here..."></textarea>
+          <button id="save-thoughts-button">Save My Thoughts</button>
+      </div>
+      </main>
+    </div>
+  </body>
+</html>
