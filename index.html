@@ -4,31 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- PUT A TITLE IN HERE -->
     <title>Daily Mood Playlist Generator</title>
-    <!-- PUT A DESCRIPTION IN HERE -->
-    <meta name="description" content="Generate a personalized playlist based on your mood and weather for the day!" />
-    <!-- LINK TO NORMALIZE (FOR CONSISTENCY) -->
+    <meta name="description" content="Generate a personalized playlist based on your mood and local weather!" />
     <link rel="stylesheet" href="styles.normalize.css" />
-    <!-- LINK TO ANY FRAMEWORK STYLES HERE-->
-    <!-- LINK TO YOUR STYLES -->
     <link rel="stylesheet" href="styles/styles.css" />
-    <!-- LINK TO EXTERNAL JS LIBRARIES HERE -->
-    <!-- LINK TO YOUR JS HERE. NOTE THE DEFER ATTRIBUTE. -->
     <script src="scripts/scripts.js" defer></script>
   </head>
- 
   <body>
-    <!-- YOUR HTML GOES HERE -->
-    <!-- mood selection section -->
     <div class="selections">
       <header>
         <h1>Mood Music Generator</h1>
-        <p class="date">Date: <span id="current-date">2024/10/31</span></p>
-        <p class="weather">Weather: <span id="weather">☀️</span></p>
-        <p class="temperature">Temperature: <span id="temperature">80°F</span></p>
+        <p class="date">Date: <span id="current-date"></span></p>
+        <p class="weather">Weather: <span id="weather">Loading...</span></p>
+        <p class="temperature">Temperature: <span id="temperature">Loading...</span></p>
       </header>
-      
       <main>
         <h2>How do you feel today?</h2>
         <div class="mood-buttons">
