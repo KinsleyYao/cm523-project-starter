@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const apiKeyUrl = "./secrets/secretYoutube.txt"; // Path to the secret file
     let youtubeApiKey = ""; // Placeholder for the API key
 
-    // Fetch API key from secret.txt
+    // Fetch API key from secretYoutube.txt
     const fetchApiKey = async () => {
         try {
             const response = await fetch(apiKeyUrl);
@@ -66,6 +66,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // Save user thoughts as a local file
+    const saveThoughts = () => {
+        const thoughtsInput = document.getElementById("thoughts-input");
+        if (!thoughtsInput) {
+            alert("Error: Thoughts input field not found.");
+            return;
+        }
+
+        const thoughts = thoughtsInput.value.trim();
+        if (!thoughts) {
+            alert("Please write something before saving.");
+            return;
+        }
+
+        // Get the current timestamp
+        const now = new Date();
+        const timestamp = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}_${String(now.getHours()).padStart(2, '0')}-${String(now.getMinutes()).padStart(2, '0')}-${String(now.getSeconds()).padStart(2, '0')}`;
+
+        // Create the file content
+        const fileContent = `Timestamp: ${timestamp}\n\nThoughts:\n${thoughts}`;
+
+        // Create a blob and download link
+        const blob = new Blob([fileContent], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `Thoughts_${timestamp}.txt`;
+
+        // Simulate a click to download the file
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Clear the text area
+        thoughtsInput.value = "";
+        alert("Your thoughts have been saved!");
+    };
+
     // Initialize Results Page
     const initResultsPage = async () => {
         const videoContainer = document.getElementById("video-results");
@@ -88,6 +125,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Fetch videos
         fetchYouTubeVideos(query, videoContainer);
+
+        // Attach the save thoughts functionality
+        const saveButton = document.getElementById("save-thoughts-button");
+        if (saveButton) {
+            saveButton.addEventListener("click", saveThoughts);
+        } else {
+            console.error("Save button not found.");
+        }
     };
 
     // Detect Results Page and Initialize
