@@ -17,13 +17,14 @@ html {
 }
 
 :root {
-    --background: #fbc5bc;
-    --h1: #8384b3;
-    --h2: #a7cfee;
-    --body-text: #2b2b98;
-    --button-bg1: #fee6a7;
-    --button-bg2: #fdc89b;
-    --button-bg3: #cdd6ae;
+    --background: radial-gradient(circle, rgba(145,177,244,1) 35%, rgba(245,239,255,1) 100%);
+    --h1: #F5EFFF; 
+    --h2: #D4F6FF; 
+    --body-text: #FEF9D9;
+    --button-bg1: #CDC1FF; 
+    --button-bg2: #87A2FF; 
+    --button-bg3: #441752; 
+    --button-text: #ffffff; 
 }
 
 body {
@@ -31,6 +32,10 @@ body {
     width: auto;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
@@ -49,13 +54,7 @@ h2 {
     font-size: 3rem; 
 }
 
-.selections header {
-    text-align: center;
-    line-height: 1rem;
-    padding: 2rem 2rem 0 2rem;
-}
-
-.selections main {
+.selections header, .selections main {
     text-align: center;
     line-height: 1rem;
     padding: 2rem 2rem 0 2rem;
@@ -70,6 +69,136 @@ h2 {
     padding-top: 50px;
 }
 
+/* mood buttons */
 .mood-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem; 
+}
+
+.mood-buttons input[type="radio"] {
+    display: none;
+}
+  
+.mood-buttons label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 125px; 
+    height: 45px;
+    background: var(--button-bg1);
+    color: var(--button-text);
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 50%;
+    font-family:"sayer-script-mn", sans-serif;
+    font-size: 1.5rem;
+}
+  
+.mood-buttons label:hover {
+    background: var(--button-bg2);
+    color: var(--button-text);
+}
+  
+.mood-buttons input[type="radio"]:checked + label {
+    background: var(--button-bg3);
+    color: var(--button-text);
+}
+
+/* generator button */
+.generate-button {
+    background: var(--button-bg2);
+    color: var(--button-text);
+    font-family: "sayer-script-mn", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 0.5rem 1.5rem;
+    margin-top: 3rem;
+    border: none;
+}
+  
+.generate-button:hover {
+    background: var(--button-bg1);
+}
+
+/* results page */
+.results header, .results main {
+    text-align: center;
+    line-height: 1rem;
+    padding: 2rem 2rem 0 2rem;
+}
+
+.results h2 {
+    padding-top: 2rem;
+}
+.results main {
+    padding: 0 2rem;
+}
+
+.results p {
+    font-family: "sayer-script-mn", sans-serif;
+    font-style: normal;
+    font-weight: 400;
     color: var(--body-text);
+    font-size: 1.5rem;
+    padding-top: 0;
+    max-width: 50ch;
+    line-height: 2rem;
+}
+
+/* song cards */
+.song-card {
+    padding: 1rem;
+    margin: 0;
+    text-align: center;
+}
+  
+.song-card img {
+    max-width: fit-content;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+  
+/* thoughts sharing */
+.share-section {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px var(--card-shadow);
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 500px;
+}
+  
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--h2);
+    margin-top: 0.5rem;
+    resize: none;
+}
+  
+textarea:focus {
+    outline: none;
+    border: 2px solid var(--button-bg3);
+}
+  
+#save-thoughts-button {
+    background: var(--button-bg2);
+    color: var(--button-text);
+    padding: 0.7rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+  
+#save-thoughts-button:hover {
+    background: var(--button-bg1);
 }
