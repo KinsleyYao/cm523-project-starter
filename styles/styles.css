@@ -133,8 +133,19 @@ h2 {
 .results h2 {
     padding-top: 2rem;
 }
+
 .results main {
     padding: 0 2rem;
+    font-family: 
+}
+
+.results h3 {
+    padding-top: 2rem;
+    font-family: "marigny", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--button-bg3);
+    font-size: 1.5rem;
 }
 
 .results p {
@@ -192,13 +203,13 @@ textarea:focus {
     color: var(--button-text);
     padding: 0.7rem 1.5rem;
     margin-top: 1rem;
-    font-size: 1.1rem;
-    border-radius: var(--border-radius);
+    border-radius: 50%;
     border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-family:"sayer-script-mn", sans-serif;
+    font-size: 1.5rem;
 }
   
 #save-thoughts-button:hover {
     background: var(--button-bg1);
 }
+
