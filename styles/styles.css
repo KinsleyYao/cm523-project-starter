@@ -18,13 +18,19 @@ html {
 
 :root {
     --background: radial-gradient(circle, rgba(145,177,244,1) 35%, rgba(245,239,255,1) 100%);
-    --h1: #F5EFFF; 
-    --h2: #D4F6FF; 
-    --body-text: #FEF9D9;
-    --button-bg1: #CDC1FF; 
-    --button-bg2: #87A2FF; 
-    --button-bg3: #441752; 
-    --button-text: #ffffff; 
+    --h1: #613dc1; 
+    --h2: #ffee9a;
+    --body-text: #ffe5ec;
+    --mood-button-bg1: #f6f0c7;
+    --mood-button-bg2: linear-gradient(90deg, rgba(255,229,104,1) 0%, rgba(205,180,219,1) 100%); 
+    --mood-button-bg3: #ffe568; 
+    --mood-button-text: #95b8ff; 
+    --generator-button-bg1: #ffe5ec;
+    --generator-button-bg2: linear-gradient(90deg, rgba(205,180,219,1) 0%, rgba(255,229,104,1) 100%);;
+    --generator-button-text:#95b8ff;
+    --a-button-text: #fcf6d1;
+    --a-bg: linear-gradient(120deg, #8C92FF, #87C8E6);
+    --button-flashing: rgba(255, 255, 255, 0.3);
 }
 
 body {
@@ -88,39 +94,87 @@ h2 {
     text-align: center;
     width: 125px; 
     height: 45px;
-    background: var(--button-bg1);
-    color: var(--button-text);
+    background: var(--mood-button-bg1);
+    color: var(--mood-button-text);
     padding: 0.5rem 1rem;
     margin: 0.5rem;
-    border-radius: 50%;
+    border-radius: 10px;
     font-family:"sayer-script-mn", sans-serif;
     font-size: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
-  
+
+.mood-buttons label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--button-flashing);
+    transition: all 0.3s ease-in-out;
+    z-index: 0;  
+}
+
+.mood-buttons label:hover::before {
+    left: 100%;
+}
+
 .mood-buttons label:hover {
-    background: var(--button-bg2);
-    color: var(--button-text);
+    background: var(--mood-button-bg2);
+    color: #ffffff;
+    transform: scale(1.05);
+    animation: wiggle 0.5s ease-in-out;
 }
-  
+
 .mood-buttons input[type="radio"]:checked + label {
-    background: var(--button-bg3);
-    color: var(--button-text);
+    background: var(--mood-button-bg3);
+    color: #ffffff;
 }
 
 /* generator button */
 .generate-button {
-    background: var(--button-bg2);
-    color: var(--button-text);
-    font-family: "sayer-script-mn", sans-serif;
+    display: inline-block;
+    text-decoration: none;
     font-size: 1.5rem;
-    font-weight: 400;
-    padding: 0.5rem 1.5rem;
-    margin-top: 3rem;
-    border: none;
+    color: var(--generator-button-text);
+    background: var(--generator-button-bg1);
+    padding: 0.7rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    font-family: "sayer-script-mn", sans-serif;
+    margin-top: 2rem;
+    border: 10px;
 }
-  
+
+.generate-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--button-flashing);
+    transition: all 0.3s ease-in-out;
+    z-index: 0;
+}
+
+.generate-button:hover::before {
+    left: 100%;
+}
+
 .generate-button:hover {
-    background: var(--button-bg1);
+    background: var(--generator-button-bg2);
+    color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    animation: wiggle 0.5s ease-in-out;
 }
 
 /* results page */
@@ -132,6 +186,7 @@ h2 {
 
 .results h2 {
     padding-top: 2rem;
+    color:var(--h2);
 }
 
 .results main {
@@ -140,12 +195,12 @@ h2 {
 }
 
 .results h3 {
-    padding-top: 2rem;
+    padding-top: 0;
     font-family: "marigny", sans-serif;
     font-weight: 700;
     font-style: normal;
-    color: var(--button-bg3);
-    font-size: 1.5rem;
+    color: var(--h2);
+    font-size: 2.5rem;
 }
 
 .results p {
@@ -153,10 +208,10 @@ h2 {
     font-style: normal;
     font-weight: 400;
     color: var(--body-text);
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding-top: 0;
     max-width: 50ch;
-    line-height: 2rem;
+    line-height: 2.5rem;
 }
 
 /* song cards */
@@ -168,17 +223,70 @@ h2 {
   
 .song-card img {
     max-width: fit-content;
-    border-radius: 50%;
+    border-radius: 10px;
     margin-bottom: 0.5rem;
 }
+
+/* listen to it button */
+.song-card a {
+    display: inline-block;
+    text-decoration: none;
+    width: fit-content;
+    height: fit-content;
+    font-size: 1.2rem;
+    font-family: "sayer-script-mn", sans-serif;
+    color: var(--a-button-text); 
+    background: var(--a-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
   
+.song-card a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--button-flashing);
+    transition: all 0.3s ease-in-out;
+    z-index: 0;
+}
+  
+.song-card a:hover::before {
+    left: 100%;
+}
+  
+.song-card a:hover {
+    color: #ffffff; 
+    transform: scale(1.05); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+  
+.song-card a:hover {
+    animation: wiggle 0.5s ease-in-out;
+  }
+  
+@keyframes wiggle {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-3deg);
+    }
+    75% {
+      transform: rotate(3deg);
+    }
+}
+
 /* thoughts sharing */
 .share-section {
-    background: var(--card-bg);
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px var(--card-shadow);
-    margin: 2rem auto;
+    padding: 1rem 0;
+    margin: 0 auto;
     width: 80%;
     max-width: 500px;
 }
@@ -186,8 +294,7 @@ h2 {
 textarea {
     width: 100%;
     padding: 0.8rem;
-    font-size: 1rem;
-    border-radius: var(--border-radius);
+    font-size: 1.2rem;
     border: 1px solid var(--h2);
     margin-top: 0.5rem;
     resize: none;
@@ -195,21 +302,47 @@ textarea {
   
 textarea:focus {
     outline: none;
-    border: 2px solid var(--button-bg3);
+    border: 5px solid var(--h2);
 }
   
 #save-thoughts-button {
-    background: var(--button-bg2);
-    color: var(--button-text);
+    color: var(--a-button-text);
+    background: var(--a-bg);
+    display: inline-block;
+    text-decoration: none;
     padding: 0.7rem 1.5rem;
-    margin-top: 1rem;
-    border-radius: 50%;
-    border: none;
-    font-family:"sayer-script-mn", sans-serif;
+    margin-top: 2rem;
+    height: fit-content;
     font-size: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    font-family: "sayer-script-mn", sans-serif;
+    border: none;
 }
-  
+
+#save-thoughts-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--button-flashing);
+    transition: all 0.3s ease-in-out;
+    z-index: 0;
+}
+
+#save-thoughts-button:hover::before {
+    left: 100%;
+}
+
 #save-thoughts-button:hover {
-    background: var(--button-bg1);
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    animation: wiggle 0.5s ease-in-out;
+    color: #ffffff;
 }
 
