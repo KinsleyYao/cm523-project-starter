@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-    // fetch user's location and weathe
+    // fetch user's location and weather
     const getLocationAndFetchWeather = () => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(

@@ -92,7 +92,7 @@ h2 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 125px; 
+    width: fit-content; 
     height: 45px;
     background: var(--mood-button-bg1);
     color: var(--mood-button-text);
