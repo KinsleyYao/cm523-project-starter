@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const dateSpan = document.getElementById("current-date");
 
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`;
-
+        //https://openweathermap.org/appid#:~:text=The%20API%20key%20is%20all,required
         fetch(apiUrl)
             .then((response) => {
                 if (!response.ok) {
@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // fetch user's location and weather
+    // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
     const getLocationAndFetchWeather = () => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(

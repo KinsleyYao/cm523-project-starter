@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fetchApiKey = () =>
         fetch(apiKeyFilePath)
             .then((response) => {
-                if (!response.ok) throw new Error(`Failed to load API key. Status: ${response.status}`);
+                if (!response.ok) 
+                    throw new Error(`Failed to load API key. Status: ${response.status}`);
                 return response.text();
             })
             .then((key) => {
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch((error) => console.error("Error loading API key:", error));
 
     // fetch and display YT videos
+    // https://www.youtube.com/watch?v=EAyo3_zJj5c
     const fetchYouTubeVideos = (query, container) => {
         if (!youtubeApiKey) return console.error("YouTube API key is not loaded yet.");
 
@@ -64,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const fileContent = `Thoughts:\n${thoughts}`;
+    const fileContent = `Thoughts:${thoughts}`;
     const blob = new Blob([fileContent], { type: "text/plain" });
 
     const downloadLink = document.createElement("a");
@@ -99,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
       
 
-    saveButton?.addEventListener("click", saveThoughts);
+    saveButton.addEventListener("click", saveThoughts);
     };
       
 
