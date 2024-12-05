@@ -29,28 +29,31 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
             })
         .then((data) => {
-            console.log("YouTube API Response:", data);
-            container.innerHTML = data.items.length
-            ? data.items
-                .map(
-                    (item) => `
+                console.log("YouTube API Response:", data);
+            if (data.items.length) {
+                container.innerHTML = ""; 
+                data.items.forEach((item) => {
+                    const videoCard = `
                         <div class="song-card">
                         <div class="song-image">
-                        <img src="${item.snippet.thumbnails.medium.url}" alt="${item.snippet.title}" />
+                            <img src="${item.snippet.thumbnails.medium.url}" alt="${item.snippet.title}" />
                         </div>
-                        <p>Song: <span>${item.snippet.title}</span></p>
-                        <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank">Listen To It</a>
+                            <p>Song: <span>${item.snippet.title}</span></p>
+                            <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank">Listen To It</a>
                         </div>
-                        `
-                    )
-                .join("")
-                    : "<p>No videos found for the query.</p>";
+                        `;
+                container.innerHTML += videoCard; 
+                });
+            } 
+            else {
+                container.innerHTML = "<p>No videos found for the query.</p>";
+                }
             })
             
-            .catch((error) => {
-                console.error("YouTube API fetch error:", error);
-                container.innerHTML = "<p>Error fetching videos. Please try again later.</p>";
-            });
+        .catch((error) => {
+            console.error("YouTube API fetch error:", error);
+            container.innerHTML = "<p>Error fetching videos. Please try again later.</p>";
+        });
     };
 
     // diary section
