@@ -196,6 +196,16 @@ h2 {
     padding: 2rem 2rem 0 2rem;
 }
 
+.results h1 a {
+    text-decoration: none;
+    color: var(--h1);
+}
+
+.results h1 a:hover {
+    text-decoration: none;
+    color: var(--h1);
+}
+
 .results h2 {
     padding-top: 2rem;
     color:var(--h2);
