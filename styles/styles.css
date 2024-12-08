@@ -44,17 +44,6 @@ body {
     justify-content: center;
 }
 
-.selections .intro {
-    font-family: "marigny", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    color: var(--h1);
-    font-size: 1.5rem; 
-    line-height: 2rem;
-    padding-top: 0;
-    margin-top:0;
-}
-
 h1 {
     font-family: "marigny", sans-serif;
     font-weight: 700;
@@ -69,6 +58,17 @@ h2 {
     font-style: normal;
     color: var(--h2);
     font-size: 3rem; 
+}
+
+.selections .intro {
+    font-family: "marigny", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--h1);
+    font-size: 1.5rem; 
+    line-height: 2rem;
+    padding-top: 0;
+    margin-top:0;
 }
 
 .selections header, .selections main {
@@ -187,6 +187,28 @@ h2 {
     transform: scale(1.05);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     animation: wiggle 0.5s ease-in-out;
+}
+
+/* footer */
+.selections ul {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    gap: auto;
+    justify-content: center;
+    list-style: none;
+    place-items: center;
+    margin-top: 5rem;
+    background: var(--mood-button-text);
+    border-radius: 10px;
+}
+
+ul li a {
+    text-decoration: none;
+    font-family: "marigny", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--h1);
+    font-size: 1.2rem;
 }
 
 /* results page */
