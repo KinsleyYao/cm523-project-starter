@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="song-image">
                             <img src="${item.snippet.thumbnails.medium.url}" alt="${item.snippet.title}" />
                         </div>
-                            <p>Song: <span>${item.snippet.title}</span></p>
+                            <p>Title: <span>${item.snippet.title}</span></p>
                             <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank">Listen To It</a>
                         </div>
                         `;

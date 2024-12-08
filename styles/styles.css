@@ -17,17 +17,17 @@ html {
 }
 
 :root {
-    --background: radial-gradient(circle, rgba(145,177,244,1) 35%, rgba(245,239,255,1) 100%);
-    --h1: #613dc1; 
+    --background: radial-gradient(circle, #0010e6 45%, #6b75fa 70%, #ddc8ff 100%);
+    --h1: #ffee9a; 
     --h2: #ffee9a;
-    --body-text: #ffe5ec;
-    --mood-button-bg1: #f6f0c7;
-    --mood-button-bg2: linear-gradient(90deg, rgba(255,229,104,1) 0%, rgba(205,180,219,1) 100%); 
-    --mood-button-bg3: #ffe568; 
-    --mood-button-text: #95b8ff; 
-    --generator-button-bg1: #ffe5ec;
-    --generator-button-bg2: linear-gradient(90deg, rgba(205,180,219,1) 0%, rgba(255,229,104,1) 100%);;
-    --generator-button-text:#95b8ff;
+    --body-text: #D9EAFD;
+    --mood-button-bg1: #c3f3fc;
+    --mood-button-bg2: linear-gradient(90deg, #00f1fb 0%, #fdffe8 100%); 
+    --mood-button-bg3: #FFF5D7; 
+    --mood-button-text: #0010E6; 
+    --generator-button-bg1: #FFF5D7;
+    --generator-button-bg2: linear-gradient(90deg, #f1defd 0%, #FFF5D7 100%);;
+    --generator-button-text:#4335A7;
     --a-button-text: #fcf6d1;
     --a-bg: linear-gradient(120deg, #8C92FF, #87C8E6);
     --button-flashing: rgba(255, 255, 255, 0.3);
@@ -42,6 +42,17 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.selections .intro {
+    font-family: "marigny", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--h1);
+    font-size: 1.5rem; 
+    line-height: 2rem;
+    padding-top: 0;
+    margin-top:0;
 }
 
 h1 {
@@ -73,6 +84,7 @@ h2 {
     color: var(--body-text);
     font-size: 2rem;
     padding-top: 50px;
+    line-height: 1rem;
 }
 
 /* mood buttons */
@@ -125,14 +137,14 @@ h2 {
 
 .mood-buttons label:hover {
     background: var(--mood-button-bg2);
-    color: #ffffff;
+    color: var(--mood-button-text);
     transform: scale(1.05);
     animation: wiggle 0.5s ease-in-out;
 }
 
 .mood-buttons input[type="radio"]:checked + label {
     background: var(--mood-button-bg3);
-    color: #ffffff;
+    color: var(--mood-button-text);
 }
 
 /* generator button */
@@ -171,7 +183,7 @@ h2 {
 
 .generate-button:hover {
     background: var(--generator-button-bg2);
-    color: #ffffff;
+    color: var(--generator-button-text);
     transform: scale(1.05);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     animation: wiggle 0.5s ease-in-out;
@@ -351,4 +363,8 @@ textarea:focus {
     h1, h2, h3 {
         line-height: 4rem;
     } 
+
+    .selections p {
+        line-height: 2rem;
+    }
 }
