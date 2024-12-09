@@ -31,6 +31,8 @@ html {
     --a-button-text: #fcf6d1;
     --a-bg: linear-gradient(120deg, #8C92FF, #87C8E6);
     --button-flashing: rgba(255, 255, 255, 0.3);
+    --error-color: red;
+    --success-color: #0010E6;
 }
 
 body {
@@ -197,7 +199,7 @@ h2 {
     justify-content: center;
     list-style: none;
     place-items: center;
-    margin-top: 5rem;
+    margin-top: 3rem;
     background: var(--mood-button-text);
     border-radius: 10px;
 }
@@ -338,7 +340,7 @@ ul li a {
 textarea {
     width: 100%;
     padding: 0.8rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: 1px solid var(--h2);
     margin-top: 0.5rem;
     resize: none;
@@ -390,6 +392,25 @@ textarea:focus {
     color: #ffffff;
 }
 
+.hidden {
+    display: none;
+}
+
+.save-message {
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.save-message.error {
+    color: var(--error-color);
+}
+
+.save-message {
+    color: var(--success-color);
+}
 
 @media screen and (max-width:800px) {
     h1, h2, h3 {

@@ -59,54 +59,61 @@ document.addEventListener("DOMContentLoaded", () => {
     // diary section
     const saveButton = document.getElementById("save-thoughts-button");
     const thoughtsInput = document.getElementById("thoughts-input");
+    const saveMessage = document.getElementById("save-message");
 
     const saveThoughts = () => {
     
     const thoughts = thoughtsInput.value.trim();
 
-    if (!thoughts) {
-      alert("Please write something before saving.");
-      return;
-    }
+    saveMessage.classList.remove("hidden");
 
-    const fileContent = `Thoughts:${thoughts}`;
+        if (!thoughts) {
+            saveMessage.textContent = "Please write something before saving.";
+            saveMessage.classList.remove("success");
+            saveMessage.classList.add("error", "visible");
+            return;
+        }
+
+    const fileContent = `Thoughts: ${thoughts}`;
     const blob = new Blob([fileContent], { type: "text/plain" });
-
     const downloadLink = document.createElement("a");
+
     downloadLink.href = URL.createObjectURL(blob);
     downloadLink.download = "MyThoughts.txt";
-
     downloadLink.click();
 
     thoughtsInput.value = "";
-    alert("Your thoughts have been saved!");
-  };
+        saveMessage.textContent = "Your thoughts have been saved!";
+        saveMessage.classList.remove("error");
+        saveMessage.classList.add("success", "visible");
 
+    //message will go after a few seconds
+    setTimeout(() => {
+        saveMessage.classList.add("hidden");
+    }, 3000);
+    };
+
+    
     // page process order
     const initializeResultsPage = () => {
     const videoContainer = document.getElementById("video-results");
-    const saveButton = document.getElementById("save-thoughts-button");
-      
-   
+
     const params = new URLSearchParams(window.location.search);
     const mood = params.get("mood");
     const weather = params.get("weather");
 
-    if (!mood || !weather) {
-        videoContainer.innerHTML = "<p>Error: Missing mood or weather data.</p>";
-        return;
-   }
-      
+        if (!mood || !weather) {
+            videoContainer.innerHTML = "<p>Error: Missing mood or weather data.</p>";
+            return;
+        }
 
-    fetchApiKey().then(() => {
-    const query = `songs for a ${mood} and ${weather} day`;
-    fetchYouTubeVideos(query, videoContainer);
-    });
-      
+        fetchApiKey().then(() => {
+            const query = `songs for a ${mood} and ${weather} day`;
+            fetchYouTubeVideos(query, videoContainer);
+        });
 
-    saveButton.addEventListener("click", saveThoughts);
-    };
-      
+        saveButton.addEventListener("click", saveThoughts);
+        };
 
-    if (document.getElementById("video-results")) initializeResultsPage();
-    });
+        if (document.getElementById("video-results")) initializeResultsPage();
+        });
