@@ -1,26 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const weatherApiKeyUrl = "./secrets/secretWeather.txt";
-    let weatherApiKey = "";
+    const weatherApiKey = "86af78f3841b6bddb02fc8df8a2121b4";
 
-    // fetch weatherAPI from the secrets 
-    const fetchWeatherApiKey = () => {
-        return fetch(weatherApiKeyUrl)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`Failed to load weather API key. Status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then((key) => {
-                weatherApiKey = key.trim();
-                console.log("Weather API Key loaded successfully");
-            })
-            .catch((error) => {
-                console.error("Error loading weather API key:", error);
-            });
-    };
-
-    // fetch and display weather for user's location
+    // fetch user's current location's date, weather, and temperature
     const fetchWeather = (latitude, longitude) => {
         if (!weatherApiKey) {
             console.error("Weather API key is not loaded yet.");
@@ -32,12 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const dateSpan = document.getElementById("current-date");
 
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`;
-        //https://openweathermap.org/appid#:~:text=The%20API%20key%20is%20all,required
+        //codes development referred to https://openweathermap.org/appid#:~:text=The%20API%20key%20is%20all,required 
+        
         fetch(apiUrl)
             .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                 return response.json();
             })
             .then((data) => {
@@ -56,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-    // fetch user's location and weather
-    // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
+    //fetch users' current location by asking their browser' consent
+    //codes development referred to https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
     const getLocationAndFetchWeather = () => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
@@ -102,7 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // page process order
     const initializePage = () => {
-        fetchWeatherApiKey().then(getLocationAndFetchWeather).then(addGenerateButtonListener);
+        getLocationAndFetchWeather();
+        addGenerateButtonListener();
     };
 
     initializePage(); 

@@ -194,14 +194,12 @@ h2 {
 /* footer */
 .selections ul {
     display: grid;
-    grid-template-columns: repeat(3, 3fr);
-    gap: auto;
+    grid-template-rows: repeat(3, 3fr);
+    gap: 1rem;
     justify-content: center;
     list-style: none;
     place-items: center;
     margin-top: 3rem;
-    background: var(--mood-button-text);
-    border-radius: 10px;
 }
 
 ul li a {
@@ -241,7 +239,8 @@ ul li a {
 }
 
 .results h3 {
-    padding-top: 0;
+    padding: 0;
+    margin: 2rem 0 0 0;
     font-family: "marigny", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -340,9 +339,9 @@ ul li a {
 textarea {
     width: 100%;
     padding: 0.8rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     border: 1px solid var(--h2);
-    margin-top: 0.5rem;
+    margin-top: 0;
     resize: none;
 }
   
@@ -392,24 +391,24 @@ textarea:focus {
     color: #ffffff;
 }
 
-.hidden {
-    display: none;
+.save-message {
+    margin: 0.5rem 0 0 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
-.save-message {
-    font-size: 1rem;
-    margin-top: 1rem;
-    text-align: center;
+.save-message.visible {
     opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+    font-size: 1.5rem;
+    place-self: center;
 }
 
 .save-message.error {
-    color: var(--error-color);
+    color: red;
 }
 
-.save-message {
-    color: var(--success-color);
+.save-message.success {
+    color: var(--h1);
 }
 
 @media screen and (max-width:800px) {

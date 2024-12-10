@@ -1,59 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiKeyFilePath = "./secrets/secretYoutube.txt";
-    let youtubeApiKey = "";
+    const youtubeApiKey = "AIzaSyCRSI5rKKU8tRmesdNOMZAQmJdYqBaZgKE";
+    //YouTube API key retrieving from: https://console.cloud.google.com/apis/library/youtube.googleapis.com?project=cm523-443019&supportedpurview=project&inv=1&invt=Abjmsg
 
-    // fetch YT API
-    const fetchApiKey = () =>
-        fetch(apiKeyFilePath)
-            .then((response) => {
-                if (!response.ok) 
-                    throw new Error(`Failed to load API key. Status: ${response.status}`);
-                return response.text();
-            })
-            .then((key) => {
-                youtubeApiKey = key.trim();
-                console.log("YouTube API Key loaded successfully");
-            })
-            .catch((error) => console.error("Error loading API key:", error));
-
-    // fetch and display YT videos
-    // https://www.youtube.com/watch?v=EAyo3_zJj5c
+    // fetch YouTube Videos based on the query string and display
+    // codes development referred to https://www.youtube.com/watch?v=EAyo3_zJj5c
     const fetchYouTubeVideos = (query, container) => {
         if (!youtubeApiKey) return console.error("YouTube API key is not loaded yet.");
 
     const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&videoCategoryId=10&maxResults=5&key=${youtubeApiKey}`;
 
-    fetch(apiUrl)
-        .then((response) => {
-            if (!response.ok) throw new Error(`YouTube API error! Status: ${response.status}`);
-            return response.json();
+        fetch(apiUrl)
+            .then((response) => {
+                if (!response.ok) throw new Error(`YouTube API error! Status: ${response.status}`);
+                return response.json();
             })
-        .then((data) => {
+            .then((data) => {
                 console.log("YouTube API Response:", data);
-            if (data.items.length) {
-                container.innerHTML = ""; 
-                data.items.forEach((item) => {
-                    const videoCard = `
-                        <div class="song-card">
-                        <div class="song-image">
-                            <img src="${item.snippet.thumbnails.medium.url}" alt="${item.snippet.title}" />
-                        </div>
-                            <p>Title: <span>${item.snippet.title}</span></p>
-                            <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank">Listen To It</a>
-                        </div>
+                if (data.items.length) {
+                    container.innerHTML = "";
+                    data.items.forEach((item) => {
+                        const videoCard = `
+                            <div class="song-card">
+                                <div class="song-image">
+                                    <img src="${item.snippet.thumbnails.medium.url}" alt="${item.snippet.title}" />
+                                </div>
+                                <p>Title: <span>${item.snippet.title}</span></p>
+                                <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank">Listen To It</a>
+                            </div>
                         `;
-                container.innerHTML += videoCard; 
-                });
-            } 
-            else {
-                container.innerHTML = "<p>No videos found for the query.</p>";
+                        container.innerHTML += videoCard;
+                    });
+                } else {
+                    container.innerHTML = "<p>No videos found for the query.</p>";
                 }
             })
-            
-        .catch((error) => {
-            console.error("YouTube API fetch error:", error);
-            container.innerHTML = "<p>Error fetching videos. Please try again later.</p>";
-        });
+            .catch((error) => {
+                console.error("YouTube API fetch error:", error);
+                container.innerHTML = "<p>Error fetching videos. Please try again later.</p>";
+            });
     };
 
     // diary section
@@ -62,10 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveMessage = document.getElementById("save-message");
 
     const saveThoughts = () => {
-    
-    const thoughts = thoughtsInput.value.trim();
-
-    saveMessage.classList.remove("hidden");
+        const thoughts = thoughtsInput.value.trim();
 
         if (!thoughts) {
             saveMessage.textContent = "Please write something before saving.";
@@ -74,46 +55,39 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-    const fileContent = `Thoughts: ${thoughts}`;
-    const blob = new Blob([fileContent], { type: "text/plain" });
-    const downloadLink = document.createElement("a");
+        const fileContent = `Thoughts: ${thoughts}`;
+        const blob = new Blob([fileContent], { type: "text/plain" });
+        const downloadLink = document.createElement("a");
 
-    downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = "MyThoughts.txt";
-    downloadLink.click();
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = "MyThoughts.txt";
+        downloadLink.click();
 
-    thoughtsInput.value = "";
-        saveMessage.textContent = "Your thoughts have been saved!";
+        thoughtsInput.value = "";
+        saveMessage.textContent = "Your thoughts.txt have been saved!";
         saveMessage.classList.remove("error");
         saveMessage.classList.add("success", "visible");
-
-    //message will go after a few seconds
-    setTimeout(() => {
-        saveMessage.classList.add("hidden");
-    }, 3000);
     };
 
     
     // page process order
     const initializeResultsPage = () => {
-    const videoContainer = document.getElementById("video-results");
+        const videoContainer = document.getElementById("video-results");
 
-    const params = new URLSearchParams(window.location.search);
-    const mood = params.get("mood");
-    const weather = params.get("weather");
+        const params = new URLSearchParams(window.location.search);
+        const mood = params.get("mood");
+        const weather = params.get("weather");
 
         if (!mood || !weather) {
             videoContainer.innerHTML = "<p>Error: Missing mood or weather data.</p>";
             return;
         }
 
-        fetchApiKey().then(() => {
-            const query = `songs for a ${mood} and ${weather} day`;
-            fetchYouTubeVideos(query, videoContainer);
-        });
+        const query = `songs for a ${mood} and ${weather} day`;
+        fetchYouTubeVideos(query, videoContainer);
 
         saveButton.addEventListener("click", saveThoughts);
-        };
+    };
 
-        if (document.getElementById("video-results")) initializeResultsPage();
-        });
+    if (document.getElementById("video-results")) initializeResultsPage();
+});
